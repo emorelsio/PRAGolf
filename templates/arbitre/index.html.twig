@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArbitreController!{% endblock %}
+
+
+
+
+{% block body %}
+
+    <?php
+use Spipu\Html2Pdf\Html2Pdf;
+ob_start();
+
+?>
+
+    {{ competition }} {{ date }}
+    <table border="1">
+        <thead style="background:yellow">
+        <tr>
+            <th>#</th>
+            <th>Dep</th>
+            <th>Joueurs</th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+            <th>6</th>
+            <th>7</th>
+            <th>8</th>
+            <th>9</th>
+            <th>10</th>
+            <th>11</th>
+            <th>12</th>
+            <th>13</th>
+            <th>14</th>
+            <th>15</th>
+            <th>16</th>
+            <th>17</th>
+            <th>18</th>
+            <th>#</th>
+        </tr>
+        </thead>
+
+        {% for joueur, joueur2 in t %}
+            <tr>
+            <td>{{ joueur+1 }}</td>
+                <td>A remplir quand formulaire sera fait</td>
+                <td>
+                    {% for abc in joueur2 %}
+                        {{ abc }}
+                        <br>
+                    {% endfor %}
+                </td>
+                <td>a remplir</td>
+                <td>a remplir</td>
+                <td>a remplir</td>
+                <td>a remplir</td>
+                <td>a remplir</td>
+                <td>a remplir</td>
+                <td>a remplir</td>
+                <td>a remplir</td>
+                <td>a remplir</td>
+                <td>a remplir</td>
+                <td>a remplir</td>
+                <td>a remplir</td>
+                <td>a remplir</td>
+                <td>a remplir</td>
+                <td>a remplir</td>
+                <td>a remplir</td>
+                <td>a remplir</td>
+                <td>a remplir</td>
+                <td> {{ joueur+1 }}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+
+    <?php
+$content = ob_get_clean();
+require('html2pdf/html2pdf.class.php');
+try{
+    $pdf = new HTML2PDF('L', 'A4', 'fr');
+    $pdf->writeHTML($content);
+    $pdf->Outpout('test.php');
+    }catch(HTML2PDF_exception $e){
+    die($e);
+    }
+    ?>
+
+
+
+
+
+
+
+{% endblock %}
+
+
